@@ -1,0 +1,4 @@
+<div class="stone-cell">
+    <div *ngIf="!stones">&nbsp;</div>
+    <div class="seed" *ngFor="let item of totalStones(); let i = index;"></div>
+</div>

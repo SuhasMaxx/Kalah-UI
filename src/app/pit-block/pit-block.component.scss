@@ -1,0 +1,19 @@
+.stone-cell{
+    display: table-cell;
+    padding: 5px;
+    width: 80px;
+    height: 80px;
+    border: 1px solid darkolivegreen;
+    vertical-align: middle;
+}
+.seed{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: green;
+    margin: 1px;
+    -webkit-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.75);
+    box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.75);
+}

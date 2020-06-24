@@ -1,0 +1,92 @@
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
+<!-- * * * * * * * to get started with your project! * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+<!-- Toolbar -->
+<h1>Swagger</h1>
+<div *ngIf="!gameStarted" class="start-game-box">
+  <h2>Click on Start Game to start a new game !</h2>
+  <input type="button" class="start-game-btn" (click)="startGame()" value="Start Game"/>
+</div>
+<div class="loader" *ngIf="loading">
+  <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+
+<div *ngIf="gameStarted">
+  <div class="player-info">
+    <table class="info-table">
+      <tbody>
+        <tr>
+          <td>
+            Player 1
+          </td>
+          <td>
+            <div class="player-icon player-1"></div>
+          </td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td class="td-label">Game ID :</td>
+          <td>
+            <label>{{gameData.id}}</label>
+        </tr>
+        <tr>
+          <td>
+            Player 2
+          </td>
+          <td>
+            <div class="player-icon player-2"></div>
+          </td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td class="td-label">
+            Time :
+          </td>
+          <td class="td-data">
+            {{timer | timer}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- <div><div class="player-icon player-1"></div>Player 1 | 
+    Player 2</div> -->
+  </div>
+ 
+  <div class="game-header">
+    Current Player : <label class="player-active-block" [ngClass]="{'player-1-play': isPlayer1Turn(), 'player-2-play': isPlayer2Turn()}">Playrer {{currentPlayer}}</label>
+  </div>
+    
+  <div class="maze-block" >
+    <div class="home-cell player-1 selectable-cell" [ngClass]="{'active': isPlayer1Turn()}">
+      <div class="seed-container">
+        <div  class="seed" *ngFor="let item of getStonesOfPit(player1Home); let i = index;"></div>
+      </div>
+    </div>
+    <div class="blocks">
+      <div class="row-1">
+        <div *ngFor="let pit of player1pits" (click)="selectedPit(pit)" class="stone-cell player-1 selectable-cell" [ngClass]="{'active': isPlayer1Turn()}">
+          <div class="seed-container">
+            <div  class="seed" *ngFor="let item of getStonesOfPit(pit); let i = index;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row-2">
+        <div *ngFor="let pit of player2pits" (click)="selectedPit(pit)" class="stone-cell player-2 selectable-cell" [ngClass]="{'active': isPlayer2Turn()}">
+          <div class="seed-container">
+            <div  class="seed" *ngFor="let item of getStonesOfPit(pit); let i = index;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="home-cell player-2 selectable-cell" [ngClass]="{'active': isPlayer2Turn()}">
+      <div class="seed-container">
+        <div  class="seed" *ngFor="let item of getStonesOfPit(player2Home); let i = index;"></div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="errorMsg" class="error-msg">
+    <label >{{this.errorMsg}}</label>
+  </div>
+</div>
